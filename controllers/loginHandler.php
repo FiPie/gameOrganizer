@@ -1,28 +1,57 @@
 <?php
+
 session_start();
 
-$users = array(
-    "Filip" => "filip",
-    "Nata" => "nata",
-    "Tomasz" => "tomasz"
-);
+include_once '../config/config.php';
+
+if (isset($_POST['userName'], $_POST['userPswd'])) {
+    $userName = filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS);
+    $userPswd = filter_input(INPUT_POST, "userPswd", FILTER_SANITIZE_SPECIAL_CHARS);
+} else {
+    echo 'Invalid data';
+    exit();
+}
+
+$connection = connectDatabase();
+if (!$connection) {
+    die("Connection error: " . mysqli_connect_errno());
+    echo 'We have problems when connecting the database<br>';
+    echo 'Check your network connection<br>';
+    echo 'Is your MySQL server working at this time?<br>';
+    echo 'Is there organizer_db database?<br>';
+    echo 'Try to log in with phpMyAdminFirst<br>';
+    exit();  //This fuction is equivalent to die();
+}
+$query = "SELECT * FROM users WHERE userName='$userName'";
+$result = mysqli_query($connection, $query);
+$noRecords = mysqli_num_rows($result);
+
+if ($noRecords < 1) {
+    $success = FALSE;
+    echo 'no records with this username';
+} else {
+    $row = mysqli_fetch_array($result);
+    $userID = $row["userID"];
+    $userName = $row["userName"];
+    $hash = $row["password"];
+    $isAdmin = $row["isAdmin"];
+
+
+    if ($hash == crypt($userPswd, $hash)) {
+        $success = TRUE;
+        //Now we use the session
+        //Do not forget to use session_start on top of this script
+        $_SESSION['logged'] = TRUE;
+        $_SESSION["userID"] = $userID;
+        $_SESSION["userName"] = $userName;
+        $_SESSION["isAdmin"] = $isAdmin;
+        header('Location: /gameOrganizer/views/accessGranted.php');
+    } else {
+        $success = FALSE;
+        echo 'Your password is incorrect!';
+        header('Location: /gameOrganizer/views/accessDenied.php');
+    }
+}
+
+mysqli_close($connection);
 ?>
-<?php
-        $userName = filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS);
-        $userPswd = filter_input(INPUT_POST, "userPswd", FILTER_SANITIZE_SPECIAL_CHARS);
-        echo "user: $userName<br>pswd: $userPswd";
-        $_SESSION['logged'] = FALSE;
-        foreach ($users as $key => $value) {
-            echo "key:$key ";
-            echo "value:$value <br>";
-            if ($key == $userName && $value == $userPswd) {
-                $_SESSION['logged'] = TRUE;
-                $_SESSION['name'] = $userName;
-//                echo "Hello $userName You are logged in <br>";
-                header('Location: /gameOrganizer/views/accessGranted.php');
-            }
-        }
-        if($_SESSION['logged'] == FALSE){
-            header('Location: /gameOrganizer/views/accessDenied.php');
-        }
-        ?>

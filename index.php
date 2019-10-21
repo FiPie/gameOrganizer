@@ -1,6 +1,20 @@
 <?php
 session_start();
-include_once 'config/config.php';
+
+   
+
+if (isset($_SESSION['logged']) == TRUE && $_SESSION['logged'] == TRUE) {
+    include_once 'config/config.php';
+    $connection = connectDatabase();
+    $query = createUserTable();
+    mysqli_query($connection, $query);
+    if(mysqli_query($connection, $query)==TRUE){
+        echo 'Table created';
+    } else {
+        echo 'Table creation failed';    
+    }
+    mysqli_close($connection);
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +32,9 @@ include_once 'config/config.php';
             echo '<form name="login" method="POST" action="/gameOrganizer/controllers/loginHandler.php">
             <input type="text" name="userName" required="TRUE" placeholder="Please enter your user name:"><br>
             <input type="password" name="userPswd" required="TRUE" placeholder="Please enter your user password:"><br>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login"><br>
+            <a href="/gameOrganizer/views/signUpForm.php">Sign Up</a><br>
+            
         </form>';
         } else if ($_SESSION['logged'] == TRUE) {
             echo '<h1>Organizer</h1>';
@@ -34,8 +50,8 @@ include_once 'config/config.php';
         }
         ?>
 
-
-
+        
+        
         <?php include 'fragments/footer.php'; ?>      
         <script src="js/gameScript.js" charset="utf-8"></script>
     </body>
