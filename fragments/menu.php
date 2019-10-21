@@ -7,6 +7,21 @@
     <a href="team">Sklad</a>
     <a href="scores">Wyniki</a>
     <a href="legalNote">Notka Prawna</a>
-    <a href="login">Login</a>
-    <a href="signIn">Rejestracja</a>
+
+    <?php
+    if ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == TRUE)) {
+        $logged = TRUE;
+    } elseif ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == FALSE)) {
+        $logged = FALSE;
+    } else {
+        $logged = FALSE;
+    }
+    if ($logged == FALSE) {
+        echo '<a href="/gameOrganizer/views/loginForm.php">Login</a>&nbsp;';
+        echo '<a href="/gameOrganizer/views/signUpForm.php">Rejestracja</a>';
+    } else {
+        echo '<a href="/gameOrganizer/controllers/logoutHandler.php">Logout</a>';
+    }
+    ?>
+
 </nav>
