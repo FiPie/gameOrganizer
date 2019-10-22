@@ -1,4 +1,5 @@
 <?php
+header('Location: /gameOrganizer/index.php');
 
 define("HOST", "localhost:3306");
 define("USER", "organizator");
@@ -29,83 +30,4 @@ UNIQUE KEY (userName)
     return $query;
 }
 
-?>
-
-
-
-
-
-
-
-<!--MySQLi Object-Oriented-->
-<?php
-//$host = "localhost:3306";
-//$username = "organizator";
-//$password = "organizatorPassword";
-//$dataBase = "organizer_db";
-//// Create connection
-//$conn = new mysqli($host, $username, $password, $dataBase);
-//// Check connection
-//if ($conn->connect_error) {
-//    die("Connection failed: " . $conn->connect_error);
-//}
-//echo "Connected successfully with MySQLi Object-Oriented<br>";
-
-?> 
-
-<!--MySQLi Procedural-->
-<?php
-//$host = "localhost:3306";
-//$username = "organizator";
-//$password = "organizatorPassword";
-//$dataBase = "organizer_db";
-//
-//// Create connection
-//$conn = mysqli_connect($host, $username, $password, $dataBase);
-//
-//// Check connection
-//if (!$conn) {
-//    die("Connection failed: " . mysqli_connect_error());
-//}
-//echo "Connected successfully with MySQLi Procedural<br>";
-?> 
-
-<!--PDO-->
-<?php
-//$host = "localhost:3306";
-//$username = "organizator";
-//$password = "organizatorPassword";
-//$dataBase = "organizer_db";
-//
-//try {
-//    $conn = new PDO("mysql:host=$host;dbname=$dataBase", $username, $password);
-//    // set the PDO error mode to exception
-//    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//    echo "Connected successfully with PDO<br>";
-//} catch (PDOException $e) {
-//    echo "Connection failed: " . $e->getMessage();
-//}
-?> 
-<!--The following PDO example create a database named "myDBPDO":-->
-
-<?php
-//$host = "localhost:3306";
-//$username = "organizator";
-//$password = "organizatorPassword";
-//
-//try {
-//    $conn = new PDO("mysql:host=$host", $username, $password);
-//    // set the PDO error mode to exception
-//    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//    $sql = "CREATE DATABASE myDemoDB";
-//    // use exec() because no results are returned
-//    $conn->exec($sql);
-//    echo "Database created successfully<br>";
-//    }
-//catch(PDOException $e)
-//    {
-//    echo $sql . "<br>" . $e->getMessage();
-//    }
-//
-//$conn = null;
 ?>

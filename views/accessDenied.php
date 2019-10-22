@@ -9,9 +9,9 @@ session_start();
     </head>
     <body>
         <?php
-        if ($_SESSION['logged'] == FALSE) {
+        if (isset($_SESSION['logged']) == FALSE || $_SESSION['logged'] == FALSE) {
             echo "<h2 style='color:red;'>You see this page as a fallout of an unsuccessful attempt to log in</h2><br>";
-            echo "Why don't you give it another try? <a href='/gameOrganizer/index.php'>Homepage</a>";
+            echo "Why don't you give it another try? <a href='/gameOrganizer/views/loginForm.php'>Login</a>";
         }
         ?>
     </body>

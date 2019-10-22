@@ -2,15 +2,30 @@
 
 session_start();
 
-include_once '../config/config.php';
-
-if (isset($_POST['userName'], $_POST['userPswd'])) {
-    $userName = filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS);
-    $userPswd = filter_input(INPUT_POST, "userPswd", FILTER_SANITIZE_SPECIAL_CHARS);
-} else {
-    echo 'Invalid data';
+if($_SESSION['logged']==TRUE){
+    header('Location: /gameOrganizer/index.php');
     exit();
 }
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+
+if (isset($_POST['userName'], $_POST['userPswd'])) {
+    
+    $userName = test_input(filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS));
+    $userPswd = test_input(filter_input(INPUT_POST, "userPswd", FILTER_SANITIZE_SPECIAL_CHARS));
+} else {
+    echo 'Invalid data';
+    header('Location: /gameOrganizer/views/loginForm.php');
+    exit();
+    
+}
+include_once '../config/config.php';
 
 $connection = connectDatabase();
 if (!$connection) {

@@ -1,16 +1,26 @@
 <?php
 
 session_start();
+if($_SESSION['logged']==TRUE){
+    header('Location: /gameOrganizer/index.php');
+    exit();
+}
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 
 include_once '../config/config.php';
-
-
 //Get the new values of the record
 
 if (isset($_POST['userName'], $_POST['userPswd'], $_POST['userPswd2'])) {
     if ($_POST['userPswd'] == $_POST['userPswd2']) {
-        $user = $_POST['userName'];
-        $password = $_POST['userPswd'];
+        $user = test_input($_POST['userName']);
+        $password = stripslashes(trim($_POST['userPswd']));
+        echo "user: $user , password: $password";
     }
 } else {
     echo 'Non valid data';

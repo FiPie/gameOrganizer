@@ -1,12 +1,8 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 <nav>
-    <a href="index.php">Strona Glowna</a>
-    <a href="timetable.php">Terminarz</a>
-    <a href="payment">Oplaty</a>
-    <a href="attendance">Obecnosc</a>
-    <a href="team">Sklad</a>
-    <a href="scores">Wyniki</a>
-    <a href="legalNote">Notka Prawna</a>
+    <a href="/gameOrganizer/index.php">Strona Glowna</a>
+
+
 
     <?php
     if ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == TRUE)) {
@@ -16,12 +12,21 @@
     } else {
         $logged = FALSE;
     }
+    
     if ($logged == FALSE) {
         echo '<a href="/gameOrganizer/views/loginForm.php">Login</a>&nbsp;';
-        echo '<a href="/gameOrganizer/views/signUpForm.php">Rejestracja</a>';
+        echo '<a href="/gameOrganizer/views/signUpForm.php">Rejestracja</a>&nbsp;';
+        
     } else {
-        echo '<a href="/gameOrganizer/controllers/logoutHandler.php">Logout</a>';
+
+        echo '<a href="/gameOrganizer/views/timetable.php">Terminarz</a>&nbsp;';
+        echo '<a href="/gameOrganizer/views/payment.php">Oplaty</a>&nbsp;&nbsp;';
+        echo '<a href="/gameOrganizer/views/attendance.php">Obecnosc</a>&nbsp;';
+        echo '<a href="/gameOrganizer/views/team.php">Sklad</a>&nbsp;';
+        echo '<a href="/gameOrganizer/views/scores.php">Wyniki</a>&nbsp;';
+        echo '<a href="/gameOrganizer/controllers/logoutHandler.php">Logout</a>&nbsp;';
+        echo "user: <b>".$_SESSION["userName"]."</b>&nbsp;";
     }
     ?>
-
+    <a href="/gameOrganizer/views/legalNote.php">Notka Prawna</a>
 </nav>
