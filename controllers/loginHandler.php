@@ -26,7 +26,7 @@ if (isset($_POST['userName'], $_POST['userPswd'])) {
     header('Location: /gameOrganizer/views/loginForm.php');
     exit();
 }
-include_once '../config/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/config/config.php';
 
 $connection = connectDatabase();
 if (!$connection) {
@@ -53,6 +53,8 @@ if ($noRecords < 1) {
     $userName = $row["userName"];
     $hash = $row["password"];
     $isAdmin = $row["isAdmin"];
+    $userEmail = $row["email"];
+    $userPhone = $row["phone"];
 
 
     if ($hash == crypt($userPswd, $hash)) {
@@ -63,6 +65,10 @@ if ($noRecords < 1) {
         $_SESSION["userID"] = $userID;
         $_SESSION["userName"] = $userName;
         $_SESSION["isAdmin"] = $isAdmin;
+        $_SESSION['userEmail'] = $userEmail;
+        $_SESSION['userPhone'] = $userPhone;
+        $message = "Dear " . $_SESSION['userName'] . " you have successfully logged in!";
+        $_SESSION["promptMessage"] = $message;
         header('Location: /gameOrganizer/views/accessGranted.php');
     } else {
         $success = FALSE;

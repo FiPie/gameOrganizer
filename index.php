@@ -9,9 +9,10 @@ session_start();
         <title>Strona Glowna</title>
     </head>
     <body>
-<?php
-include 'fragments/menu.php';
-?>
+        <?php 
+            
+            include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/menu.php';
+        ?>
         <h1>Organizer</h1>
         <?php
         if ($logged) {
@@ -27,7 +28,7 @@ include 'fragments/menu.php';
 
 
 
-<?php include 'fragments/footer.php'; ?>      
-        <script src="js/gameScript.js" charset="utf-8"></script>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/footer.php'; ?>      
+
     </body>
 </html>

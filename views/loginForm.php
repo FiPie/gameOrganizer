@@ -8,13 +8,11 @@ session_start();
     </head>
     <body>
         <?php
-        include '../fragments/menu.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/menu.php';
         if (isset($_SESSION["promptMessage"])) {
             echo "<h2 style='color:green;'>" . $_SESSION["promptMessage"] . "</h2><br>";
             unset($_SESSION["promptMessage"]);
-            
         }
-        
         ?>
         <form name="login" method="POST" action="/gameOrganizer/controllers/loginHandler.php">
             <input type="text" name="userName" required="TRUE" placeholder="Please enter your user name:"><br>
@@ -23,5 +21,7 @@ session_start();
 
 
         </form>
+
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/footer.php'; ?>
     </body>
 </html>
