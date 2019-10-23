@@ -2,28 +2,29 @@
 
 session_start();
 
-if($_SESSION['logged']==TRUE){
+
+if ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == TRUE)) {
     header('Location: /gameOrganizer/index.php');
     exit();
 }
 
 function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
-
 if (isset($_POST['userName'], $_POST['userPswd'])) {
-    
+
     $userName = test_input(filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS));
     $userPswd = test_input(filter_input(INPUT_POST, "userPswd", FILTER_SANITIZE_SPECIAL_CHARS));
+//    $userName = filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS);
+//    $userPswd = filter_input(INPUT_POST, "userPswd", FILTER_SANITIZE_SPECIAL_CHARS);
 } else {
     echo 'Invalid data';
     header('Location: /gameOrganizer/views/loginForm.php');
     exit();
-    
 }
 include_once '../config/config.php';
 
@@ -43,7 +44,9 @@ $noRecords = mysqli_num_rows($result);
 
 if ($noRecords < 1) {
     $success = FALSE;
-    echo 'no records with this username';
+    $message = "no records with this username : $userName";
+    $_SESSION["promptMessage"] = $message;
+    header('Location: /gameOrganizer/views/accessDenied.php');
 } else {
     $row = mysqli_fetch_array($result);
     $userID = $row["userID"];
@@ -63,7 +66,8 @@ if ($noRecords < 1) {
         header('Location: /gameOrganizer/views/accessGranted.php');
     } else {
         $success = FALSE;
-        echo 'Your password is incorrect!';
+        $message = "Your password is incorrect!";
+        $_SESSION["promptMessage"] = $message;
         header('Location: /gameOrganizer/views/accessDenied.php');
     }
 }

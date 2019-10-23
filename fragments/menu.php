@@ -24,8 +24,8 @@
         echo '<a href="/gameOrganizer/views/attendance.php">Obecnosc</a>&nbsp;';
         echo '<a href="/gameOrganizer/views/team.php">Sklad</a>&nbsp;';
         echo '<a href="/gameOrganizer/views/scores.php">Wyniki</a>&nbsp;';
+        echo "<a href='/gameOrganizer/views/userAccount.php'>user: <b>".$_SESSION['userName']."</b></a>&nbsp;";
         echo '<a href="/gameOrganizer/controllers/logoutHandler.php">Logout</a>&nbsp;';
-        echo "user: <b>".$_SESSION["userName"]."</b>&nbsp;";
     }
     ?>
     <a href="/gameOrganizer/views/legalNote.php">Notka Prawna</a>

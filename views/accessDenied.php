@@ -10,7 +10,8 @@ session_start();
     <body>
         <?php
         if (isset($_SESSION['logged']) == FALSE || $_SESSION['logged'] == FALSE) {
-            echo "<h2 style='color:red;'>You see this page as a fallout of an unsuccessful attempt to log in</h2><br>";
+            echo "<h2 style='color:red;'>".$_SESSION["promptMessage"]."</h2><br>";
+            unset($_SESSION["promptMessage"]);
             echo "Why don't you give it another try? <a href='/gameOrganizer/views/loginForm.php'>Login</a>";
         }
         ?>

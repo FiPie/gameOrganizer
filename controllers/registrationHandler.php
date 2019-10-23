@@ -1,17 +1,17 @@
 <?php
 
 session_start();
-if($_SESSION['logged']==TRUE){
+if ($_SESSION['logged'] == TRUE) {
     header('Location: /gameOrganizer/index.php');
     exit();
 }
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 include_once '../config/config.php';
 //Get the new values of the record
@@ -48,7 +48,9 @@ $query = "INSERT INTO users (userName, password, isAdmin) VALUES ('$user', '$has
 $result = mysqli_query($connection, $query);
 
 mysqli_close($connection);
+$message = "The new user account has been added to the database";
+$_SESSION["promptMessage"] = $message;
+header('Location: /gameOrganizer/views/accessGranted.php');
 
-
-header('Location: /gameOrganizer/index.php');
+//header('Location: /gameOrganizer/index.php');
 ?>

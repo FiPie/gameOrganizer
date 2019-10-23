@@ -8,6 +8,8 @@ session_start();
     </head>
     <body>
         <?php
+        
+        
         if ($_SESSION['logged'] == TRUE) {
 
             echo "<h2 style='color:green;'>Dear " . $_SESSION['userName'] . " you have successfully logged in!</h2><br>";
