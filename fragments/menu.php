@@ -31,7 +31,7 @@ echo '</style>';
             echo '<li><a href="/gameOrganizer/controllers/logoutHandler.php">Logout </a></li>';
         }
         ?>
-        
+
         <li><a href="/gameOrganizer/views/legalNote.php">Notka Prawna</a></li>
     </ul>
 </nav>
