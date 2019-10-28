@@ -7,7 +7,7 @@ session_start();
         <title>Sklad</title>
     </head>
     <body>
-        <?php include $_SERVER['DOCUMENT_ROOT'] .'/gameOrganizer/fragments/footer.php';
+        <?php include $_SERVER['DOCUMENT_ROOT'] .'/gameOrganizer/fragments/menu.php';
         if($logged == FALSE){
             header('Location: /gameOrganizer/index.php');
         }

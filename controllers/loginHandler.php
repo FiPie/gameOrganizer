@@ -8,12 +8,7 @@ if ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == TRUE)) {
     exit();
 }
 
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+include_once $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/config/config.php';
 
 if (isset($_POST['userName'], $_POST['userPswd'])) {
 
@@ -26,7 +21,7 @@ if (isset($_POST['userName'], $_POST['userPswd'])) {
     header('Location: /gameOrganizer/views/loginForm.php');
     exit();
 }
-include_once $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/config/config.php';
+
 
 $connection = connectDatabase();
 if (!$connection) {

@@ -1,5 +1,4 @@
 <?php
-//header('Location: /gameOrganizer/index.php');
 
 define("HOST", "localhost:3306");
 define("USER", "organizator");
@@ -11,5 +10,12 @@ function connectDatabase() {
     $conn = mysqli_connect(HOST, USER, PASSWORD, DATA_BASE);
     mysqli_set_charset($conn,"utf8");
     return $conn;
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 ?>

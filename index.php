@@ -15,7 +15,7 @@ session_start();
         <h1>Organizer</h1>
         <?php
         if ($logged) {
-            echo "<p>Alright then, you seem to have the proper clearance... <br>"
+            echo "<p>Alright then, you seem to have the proper clearance level... <br>"
             . "Here it goes, our secret: There is no secret! <br>"
             . "All is as it seems! Seriously.<br> If it quacks like a duck<br>"
             . "And it looks like a duck<br>And it walks like a duck<br>"

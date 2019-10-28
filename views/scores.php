@@ -13,7 +13,7 @@ session_start();
             header('Location: /gameOrganizer/index.php');
         }
         ?>
-        <h1>Sklad</h1>
+        <h1>Wyniki</h1>
         
         <?php include $_SERVER['DOCUMENT_ROOT'] .'/gameOrganizer/fragments/footer.php'; ?>      
         

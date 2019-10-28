@@ -9,7 +9,7 @@ session_start();
     <body>
 
         <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/footer.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/menu.php';
         if ($logged == FALSE) {
             header('Location: /gameOrganizer/index.php');
         }
