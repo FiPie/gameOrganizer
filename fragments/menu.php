@@ -9,33 +9,49 @@ include $_SERVER['DOCUMENT_ROOT'] . "/gameOrganizer/css/styles.css";
 echo '</style>';
 ?>
 
-<nav>
-    <ul>
-        <li><a href="/gameOrganizer/index.php">Strona Glowna</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/gameOrganizer/index.php">Game Organizer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        MENU
+                    </a>
+                    <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+                    <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
 
-        <?php
-        if ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == TRUE)) {
-            $logged = TRUE;
-        } elseif ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == FALSE)) {
-            $logged = FALSE;
-        } else {
-            $logged = FALSE;
-        }
+                        <?php
+                        if ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == TRUE)) {
+                            $logged = TRUE;
+                        } elseif ((isset($_SESSION['logged']) == TRUE) && ($_SESSION['logged'] == FALSE)) {
+                            $logged = FALSE;
+                        } else {
+                            $logged = FALSE;
+                        }
 
-        if ($logged == FALSE) {
-            echo '<li><a href="/gameOrganizer/views/loginForm.php">Login </a></li>';
-            echo '<li><a href="/gameOrganizer/views/signUpForm.php">Rejestracja </a></li>';
-        } else {
-            echo '<li><a href="/gameOrganizer/views/timetable.php">Terminarz </a></li>';
-            echo '<li><a href="/gameOrganizer/views/payment.php">Oplaty </a></li>';
-            echo '<li><a href="/gameOrganizer/views/attendance.php">Obecnosc </a></li>';
-            echo '<li><a href="/gameOrganizer/views/team.php">Sklad </a></li>';
-            echo '<li><a href="/gameOrganizer/views/scores.php">Wyniki </a></li>';
-            echo "<li><a href='/gameOrganizer/views/userAccount.php'>user: <b>" . $_SESSION['userName'] . " </b></a></li>";
-            echo '<li><a href="/gameOrganizer/controllers/logoutHandler.php">Logout </a></li>';
-        }
-        ?>
+                        if ($logged == FALSE) {
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/loginForm.php">Login</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/signUpForm.php">Rejestracja</a>';
+                        } else {
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/timetable.php">Terminarz</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/payment.php">Oplaty</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/attendance.php">Obecnosc</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/team.php">Sklad</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/scores.php">Wyniki</a>';
+                            echo "<a class='dropdown-item' href='/gameOrganizer/views/userAccount.php'>user: <b>" . $_SESSION['userName'] . "</b></a>";
+                            echo '<a class="dropdown-item" href="/gameOrganizer/controllers/logoutHandler.php">Logout</a>';
+                        }
+                        ?>
+                        <div class="dropdown-divider"></div>    
+                        <a class="dropdown-item" href="/gameOrganizer/views/legalNote.php">Notka Prawna</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-        <li><a href="/gameOrganizer/views/legalNote.php">Notka Prawna</a></li>
-    </ul>
+    </div>
 </nav>

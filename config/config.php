@@ -18,4 +18,10 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+
+function pre_r($array){
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
+}
 ?>

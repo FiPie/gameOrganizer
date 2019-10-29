@@ -62,7 +62,7 @@ if ($noRecords < 1) {
         $_SESSION["isAdmin"] = $isAdmin;
         $_SESSION['userEmail'] = $userEmail;
         $_SESSION['userPhone'] = $userPhone;
-        $message = "Dear " . $_SESSION['userName'] . " you have successfully logged in!";
+        $message = "Dear <b>" . $_SESSION['userName'] . "</b> you have successfully logged in!";
         $_SESSION["promptMessage"] = $message;
         header('Location: /gameOrganizer/views/accessGranted.php');
     } else {
