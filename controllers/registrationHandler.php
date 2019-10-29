@@ -27,6 +27,7 @@ if (isset($_POST['userName'], $_POST['userPswd'], $_POST['userPswd2'], $_POST['u
 } else {
     $message = "Provided data invalid!";
     $_SESSION["promptMessage"] = $message;
+    $_SESSION["msg_type"] = "danger";
     header('Location: /gameOrganizer/views/accessDenied.php');
     exit();
 }

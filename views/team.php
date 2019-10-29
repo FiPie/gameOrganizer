@@ -11,6 +11,15 @@ session_start();
     </head>
     <body class="d-flex flex-column">
         <div class="page-content">
+            <?php if (isset($_SESSION['promptMessage'])): ?>
+                <div class="alert alert-<?= $_SESSION['msg_type'] ?>">
+                    <?php
+                    echo $_SESSION['promptMessage'];
+                    unset($_SESSION["promptMessage"]);
+                    unset($_SESSION["msg_type"]);
+                    ?>
+                </div>
+            <?php endif; ?>
             <?php
             include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/menu.php';
             if ($logged == FALSE) {
@@ -27,8 +36,12 @@ session_start();
             ?>
 
             <div class="container">
+
                 <div class='row justify-content-center'>
                     <h1>Sklad</h1>
+                </div>
+                <div class='row justify-content-center'>
+
                 </div>
                 <div class="row justify-content-center">
                     <table class="table">
@@ -55,9 +68,9 @@ session_start();
                                 if ((isset($_SESSION['isAdmin']) == TRUE) && ($_SESSION['isAdmin'] == TRUE)) {
                                     ?>
                                     <td>
-                                        <a href="#?edit=<?php echo $row['userID']; ?>" 
+                                        <a href="/gameOrganizer/core/userService.php?edit=<?php echo $row['userID']; ?>" 
                                            class="btn btn-info">Edit</a>
-                                        <a href="#?delete=<?php echo $row['userID']; ?>" 
+                                        <a href="/gameOrganizer/core/userService.php?delete=<?php echo $row['userID']; ?>" 
                                            class="btn btn-danger">Delete</a>
                                     </td>
                                 <?php } ?>
