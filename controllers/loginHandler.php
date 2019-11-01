@@ -39,7 +39,7 @@ $noRecords = mysqli_num_rows($result);
 
 if ($noRecords < 1) {
     $success = FALSE;
-    $message = "no records with this username : $userName";
+    $message = "brak użytkownika o podanej nazwie : $userName";
     $_SESSION["promptMessage"] = $message;
     header('Location: /gameOrganizer/views/accessDenied.php');
 } else {
@@ -62,12 +62,12 @@ if ($noRecords < 1) {
         $_SESSION["isAdmin"] = $isAdmin;
         $_SESSION['userEmail'] = $userEmail;
         $_SESSION['userPhone'] = $userPhone;
-        $message = "Dear <b>" . $_SESSION['userName'] . "</b> you have successfully logged in!";
+        $message = "Witaj <b>" . $_SESSION['userName'] . "</b> , jesteś zalogowany!";
         $_SESSION["promptMessage"] = $message;
         header('Location: /gameOrganizer/views/accessGranted.php');
     } else {
         $success = FALSE;
-        $message = "Your password is incorrect!";
+        $message = "Podane hasło jest nieprawidłowe!";
         $_SESSION["promptMessage"] = $message;
         header('Location: /gameOrganizer/views/accessDenied.php');
     }

@@ -38,11 +38,11 @@ echo '</style>';
                             echo '<a class="dropdown-item" href="/gameOrganizer/views/signUpForm.php">Rejestracja</a>';
                         } else {
                             echo '<a class="dropdown-item" href="/gameOrganizer/views/timetable.php">Terminarz</a>';
-                            echo '<a class="dropdown-item" href="/gameOrganizer/views/payment.php">Oplaty</a>';
-                            echo '<a class="dropdown-item" href="/gameOrganizer/views/attendance.php">Obecnosc</a>';
-                            echo '<a class="dropdown-item" href="/gameOrganizer/views/team.php">Sklad</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/payment.php">Opłaty</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/attendance.php">Obecność</a>';
+                            echo '<a class="dropdown-item" href="/gameOrganizer/views/team.php">Skład</a>';
                             echo '<a class="dropdown-item" href="/gameOrganizer/views/scores.php">Wyniki</a>';
-                            echo "<a class='dropdown-item' href='/gameOrganizer/views/userAccount.php'>user: <b>" . $_SESSION['userName'] . "</b></a>";
+                            echo "<a class='dropdown-item' href='/gameOrganizer/views/userAccount.php'>użytkownik: <b>" . $_SESSION['userName'] . "</b></a>";
                             echo '<a class="dropdown-item" href="/gameOrganizer/controllers/logoutHandler.php">Logout</a>';
                         }
                         ?>

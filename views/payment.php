@@ -19,7 +19,7 @@ session_start();
             ?>
             <div class="container">
                 <div class='row justify-content-center'>
-                    <h1>Oplaty</h1>
+                    <h1>Opłaty</h1>
                 </div>
             </div>
         </div>

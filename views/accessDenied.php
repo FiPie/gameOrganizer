@@ -26,7 +26,7 @@ session_start();
             if (isset($_SESSION['logged']) == FALSE || $_SESSION['logged'] == FALSE) {
                 echo "<br><div class='container text-center'><h1 style='color:white;'>" . $_SESSION["promptMessage"] . "</h1></div><br>";
                 unset($_SESSION["promptMessage"]);
-                echo "<div class='container text-center'><label>Why don't you give it another try?</label>
+                echo "<div class='container text-center'><label>Spróbuj jeszcze raz!</label>
             <a class='btn btn-primary' role='button' href='/gameOrganizer/views/loginForm.php'>Login</a></div>";
             }
             ?>

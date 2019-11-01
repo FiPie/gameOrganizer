@@ -12,6 +12,20 @@ if (!$connection) {
     die("Connection error: " . mysqli_connect_errno());
 };
 
+function createUserTable(){
+    $query = "CREATE TABLE IF NOT EXISTS users (
+userID int(11) NOT NULL AUTO_INCREMENT,
+userName varchar(30) NOT NULL,
+password varchar(255) NOT NULL,
+phone varchar(50) NOT NULL,
+email varchar(50) NOT NULL,
+isAdmin tinyint(1) NOT NULL DEFAULT '0',
+PRIMARY KEY (userID),
+UNIQUE KEY (userName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+    return $query;
+}
+
 
 if (isset($_POST['save'])) {
     $name = test_input(filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS));

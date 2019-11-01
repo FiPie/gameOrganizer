@@ -8,7 +8,7 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title>Uzytkownik</title>
+        <title>Użytkownik</title>
     </head>
     <body class="d-flex flex-column">
         <div class="page-content">
@@ -35,7 +35,7 @@ session_start();
                                 header('Location: /gameOrganizer/index.php');
                             } else {
                                 echo "<div class='form-group'>
-                                        <h1>Konto Uzytkownika : " . $_SESSION['userName'] . "</h1>
+                                        <h1>Konto Użytkownika : " . $_SESSION['userName'] . "</h1>
                                       </div>";
                                 echo "<div class='form-group'>
                                     <label>Name</label><input class='form-control' type='text' readonly='true' value='".$_SESSION['userName']."'></div>";

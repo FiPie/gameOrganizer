@@ -20,9 +20,9 @@ session_start();
                         echo "<br><div class='row justify-content-center'> <h1 style='color:white;'>" . $_SESSION["promptMessage"] . "</h1></div>";
                         unset($_SESSION["promptMessage"]);
                         echo "<div class='row justify-content-center'><div btn-group-vertical>"
-                        . "<br><label>Press to continue...</label>"
-                        . "<a class='btn btn-primary btn-block' role='button' href='/gameOrganizer/index.php'>Strona Glowna</a>";
-                        echo "<label>Press to logout</label>"
+                        . "<br><label>Naciśnij aby kontynuować...</label>"
+                        . "<a class='btn btn-primary btn-block' role='button' href='/gameOrganizer/index.php'>Strona Główna</a>";
+                        echo "<label>Naciśnij aby się wylogować...</label>"
                         . "<a class='btn btn-primary btn-block' role='button' href='/gameOrganizer/controllers/logoutHandler.php'>Logout</a>"
                         . "</div></div>";
                     } else if ($_SESSION['logged'] == FALSE or isset($_SESSION['logged']) == FALSE) {

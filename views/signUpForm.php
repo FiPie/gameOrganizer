@@ -20,28 +20,28 @@ session_start();
                 <div class="row justify-content-center"> 
                     <form action="/gameOrganizer/controllers/registrationHandler.php" method="POST" name="newUser">
                         <div class="form-group"> 
-                            <label>User Name</label>
-                            <input autofocus="true" class="form-control" type="text" name="userName" required="TRUE" placeholder="Enter your user name:">
+                            <label>Nazwa użytkownika</label>
+                            <input autofocus="true" class="form-control" type="text" name="userName" required="TRUE" placeholder="Podaj nazwę użytkownika:">
                         </div>
                         <div class="form-group"> 
-                            <label>Password</label>
-                            <input class="form-control" type="password" name="userPswd" required="TRUE" placeholder="Enter your password:">
+                            <label>Hasło</label>
+                            <input class="form-control" type="password" name="userPswd" required="TRUE" placeholder="Wprowadź hasło:">
                         </div>
                         <div class="form-group"> 
-                            <label>Password</label>
-                            <input class="form-control" type="password" name="userPswd2" required="TRUE" placeholder="Re-enter your password:">
+                            <label>Potwierdzenie hasła</label>
+                            <input class="form-control" type="password" name="userPswd2" required="TRUE" placeholder="Wprowadź hasło jeszcze raz:">
                         </div>
                         <div class="form-group"> 
                             <label>Email</label>
-                            <input class="form-control" type="email" name="userEmail" required="TRUE" placeholder="Enter your email:">
+                            <input class="form-control" type="email" name="userEmail" required="TRUE" placeholder="Podaj swój email:">
                         </div>
                         <div class="form-group"> 
-                            <label>Phone no.</label>
-                            <input class="form-control" type="tel" name="userPhone" required="TRUE" placeholder="Enter your phone number:">
+                            <label>Telefon</label>
+                            <input class="form-control" type="tel" name="userPhone" required="TRUE" placeholder="Wprowadź numer telefonu:">
                         </div>
                         <div class="form-group"> 
-                            <label>Create a new account</label>
-                            <input class="btn btn-primary form-control" type="submit" value="Sign Up">
+                            <label>Stwórz nowe konto</label>
+                            <input class="btn btn-primary form-control" type="submit" value="Zarejestruj">
                         </div>
                         <div class="form-group">   
                             <label>Login</label>

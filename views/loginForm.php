@@ -25,20 +25,20 @@ session_start();
                 <div class="row justify-content-center"> 
                     <form action="/gameOrganizer/controllers/loginHandler.php" method="POST" name="login">
                         <div class="form-group"> 
-                            <label>User Name</label>
-                            <input autofocus="true" class="form-control" type="text" name="userName" required="TRUE" placeholder="Enter your user name:">
+                            <label>Nazwa użytkownika</label>
+                            <input autofocus="true" class="form-control" type="text" name="userName" required="TRUE" placeholder="Podaj nazwę użytkownika:">
                         </div>
                         <div class="form-group"> 
-                            <label>Password</label>
-                            <input class="form-control" type="password" name="userPswd" required="TRUE" placeholder="Enter your password:">
+                            <label>Hasło użytkownika</label>
+                            <input class="form-control" type="password" name="userPswd" required="TRUE" placeholder="Podaj hasło użytkownika:">
                         </div>
                         <div class="form-group"> 
                             <label>Login</label>
                             <input class="btn btn-primary form-control" type="submit" value="Login">
                         </div>
                         <div class="form-group">   
-                            <label>Register</label>
-                            <a class="btn btn-secondary form-control" role="button" href="/gameOrganizer/views/signUpForm.php">Sign Up</a>
+                            <label>Rejestracja</label>
+                            <a class="btn btn-secondary form-control" role="button" href="/gameOrganizer/views/signUpForm.php">Zarejestruj się</a>
                         </div>
                     </form>
                 </div>
