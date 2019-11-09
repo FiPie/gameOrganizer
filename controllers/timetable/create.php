@@ -25,5 +25,6 @@ if(isset($_POST["title"]))
    ':end_event' => $_POST['end']
   )
  );
+ 
 }
 ?>
