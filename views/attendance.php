@@ -37,12 +37,17 @@ session_start();
             $nextEventResult = $connection->query("SELECT * FROM organizer_db.events WHERE start_event >= CURDATE() ORDER BY start_event ASC  LIMIT 1") or die($connection->error);
             $eventRow = $nextEventResult->fetch_assoc();
             $eventID = $eventRow['id'];
+            
 
             $teamResult = $connection->query("SELECT * FROM organizer_db.users")or die($connection->error);
-            $teamIDs = array();
+            $usersResult = $connection->query("SELECT * FROM organizer_db.users")or die($connection->error);
+            $teamIDs = "";
+            while($user = $usersResult->fetch_assoc()){
+                $teamIDs .= $user['userID'].",";
+            }
+            echo "<h1>$teamIDs</h1>";
             
-           
-//            $connection->query("INSERT IGNORE INTO organizer_db.attendance eventID=$eventID")or die($connection->error);
+            $connection->query("INSERT IGNORE INTO organizer_db.attendance (eventID) VALUES ($eventID)")or die($connection->error);
 
 
 //            $attendanceResult = $connection->query("SELECT * FROM organizer_db.attendance WHERE eventID='$eventID'") or die($connection->error);
@@ -71,7 +76,10 @@ session_start();
                         </thead>
 
                         <tr>
-                            <td><?php echo $eventRow['id'] ?></td>
+                            <td><?php 
+                                    
+                                    echo $eventRow['id']; 
+                                ?></td>
                             <td><?php echo $eventRow['title'] ?></td>
                             <td><?php echo $eventRow['start_event'] ?></td>
                             <td><?php echo $eventRow['end_event'] ?></td>
@@ -101,7 +109,9 @@ session_start();
                         </thead>
                         <?php while ($userRow = $teamResult->fetch_assoc()): ?>
                             <tr>
-                                <td><?php echo $userRow['userID'] ?></td>
+                                <td><?php 
+                                
+                                echo $userRow['userID']; ?></td>
                                 <td><?php echo $userRow['userName'] ?></td>
                                 
                                 <?php
