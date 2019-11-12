@@ -37,17 +37,19 @@ session_start();
             $nextEventResult = $connection->query("SELECT * FROM organizer_db.events WHERE start_event >= CURDATE() ORDER BY start_event ASC  LIMIT 1") or die($connection->error);
             $eventRow = $nextEventResult->fetch_assoc();
             $eventID = $eventRow['id'];
-            
+
 
             $teamResult = $connection->query("SELECT * FROM organizer_db.users")or die($connection->error);
             $usersResult = $connection->query("SELECT * FROM organizer_db.users")or die($connection->error);
-            $teamIDs = "";
-            while($user = $usersResult->fetch_assoc()){
-                $teamIDs .= $user['userID'].",";
+            $teamIDs = array();
+            while ($user = $usersResult->fetch_assoc()) {
+                //$teamIDs .= $user['userID'] . ",";
+                array_push($teamIDs, $user['userID']);
             }
+            $teamIDs = implode(",", $teamIDs);
             echo "<h1>$teamIDs</h1>";
-            
-            $connection->query("INSERT IGNORE INTO organizer_db.attendance (eventID) VALUES ($eventID)")or die($connection->error);
+
+            $connection->query("INSERT IGNORE INTO organizer_db.attendance (eventID, users_unspecified) VALUES ('$eventID', '$teamIDs')")or die($connection->error);
 
 
 //            $attendanceResult = $connection->query("SELECT * FROM organizer_db.attendance WHERE eventID='$eventID'") or die($connection->error);
@@ -67,22 +69,18 @@ session_start();
                                 <th>nazwa</th>
                                 <th>start</th>
                                 <th>koniec</th>
-                                <?php
-                                if ((isset($_SESSION['isAdmin']) == TRUE) && ($_SESSION['isAdmin'] == TRUE)) {
-                                    echo '<th colspan="2">Action</th>';
-                                }
-                                ?>
+                                <th colspan="3">Action</th>
+
                             </tr>
                         </thead>
 
                         <tr>
-                            <td><?php 
-                                    
-                                    echo $eventRow['id']; 
+                            <td><?php
+                                echo $eventRow['id'];
                                 ?></td>
-                            <td><?php echo $eventRow['title'] ?></td>
-                            <td><?php echo $eventRow['start_event'] ?></td>
-                            <td><?php echo $eventRow['end_event'] ?></td>
+                            <td><?php echo "<b>" . $eventRow['title'] . "</b>" ?></td>
+                            <td><?php echo substr($eventRow['start_event'], 0, 11) . "<b>" . substr($eventRow['start_event'], 11, 5) . "</b>"; ?></td>
+                            <td><?php echo substr($eventRow['end_event'], 0, 11) . "<b>" . substr($eventRow['end_event'], 11, 5) . "</b>"; ?></td>
                             <?php
                             if ((isset($_SESSION['isAdmin']) == TRUE) && ($_SESSION['isAdmin'] == TRUE)) {
                                 ?>
@@ -94,40 +92,29 @@ session_start();
                                 </td>
                             <?php } ?>
                         </tr>
-
-                    </table>
-                </div>
-                
-                <div class="row justify-content-center">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nazwa</th>
-                                <?php echo '<th colspan="3">Action</th>'; ?>
-                            </tr>
-                        </thead>
+                        <tr><td colspan="5"></td></tr>    
                         <?php while ($userRow = $teamResult->fetch_assoc()): ?>
                             <tr>
-                                <td><?php 
-                                
-                                echo $userRow['userID']; ?></td>
-                                <td><?php echo $userRow['userName'] ?></td>
-                                
+                                <td><?php echo $userRow['userID']; ?></td>
+                                <td><?php echo $userRow['userName']; ?></td>
+                                <?php echo '<th colspan="2"></th>'; ?>
                                 <?php
                                 if ((isset($_SESSION['userID']) == TRUE) && ($_SESSION['userID'] == $userRow['userID']) || ((isset($_SESSION['isAdmin']) == TRUE) && ($_SESSION['isAdmin'] == TRUE))) {
                                     ?>
                                     <td>
-                                        <a href="/gameOrganizer/core/attendanceService.php?present=<?php echo $userRow['userID']; ?>" 
-                                           class="btn btn-info">Bede</a>
-                                        <a href="/gameOrganizer/core/attendanceService.php?absent=<?php echo $userRow['userID']; ?>" 
-                                           class="btn btn-danger">Nie bede</a>
-                                           <a href="/gameOrganizer/core/attendanceService.php?unspecified=<?php echo $userRow['userID']; ?>" 
+                                        <a href="/gameOrganizer/core/attendanceService.php?present=<?php echo $userRow['userID'] . "&eventID=$eventID"; ?>" 
+                                           class="btn btn-info">Będę</a>
+                                        <a href="/gameOrganizer/core/attendanceService.php?absent=<?php echo $userRow['userID'] . "&eventID=$eventID"; ?>" 
+                                           class="btn btn-danger">Nie będę</a>
+                                        <a href="/gameOrganizer/core/attendanceService.php?unspecified=<?php echo $userRow['userID'] . "&eventID=$eventID"; ?>" 
                                            class="btn btn-warning">Nie Wiem</a>
                                     </td>
-                                <?php } ?>
+                                <?php } else {
+                                    echo "<td></td>";
+                                }
+                                ?>
                             </tr>
-                        <?php endwhile; ?>        
+<?php endwhile; ?>        
                     </table>
                 </div>
             </div>
@@ -147,6 +134,6 @@ session_start();
 
 
 
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/footer.php'; ?>      
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/gameOrganizer/fragments/footer.php'; ?>      
     </body>
 </html>
