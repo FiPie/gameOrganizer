@@ -27,5 +27,3 @@ UNIQUE KEY (start_event)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
     return $query;
 }
-
-?>

@@ -98,4 +98,3 @@ if(isset($_POST['update']) && ($_SESSION['isAdmin'] == true)){
     header('Location: /gameOrganizer/views/team.php');
 }
 
-?>

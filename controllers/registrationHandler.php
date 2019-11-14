@@ -51,4 +51,3 @@ mysqli_close($connection);
 $message = "The new user account has been added to the database";
 $_SESSION["promptMessage"] = $message;
 header('Location: /gameOrganizer/views/accessGranted.php');
-?>

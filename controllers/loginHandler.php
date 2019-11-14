@@ -74,4 +74,3 @@ if ($noRecords < 1) {
 }
 
 mysqli_close($connection);
-?>

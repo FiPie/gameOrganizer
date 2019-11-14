@@ -14,4 +14,3 @@ unset($_SESSION['promptMessage']);
 //session_destroy();
 //but this will delete other data from your session
 header('Location: /gameOrganizer/index.php');
-?>

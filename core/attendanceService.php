@@ -123,4 +123,3 @@ echo "users_abscent=$usersAbsent</br>";
 $connection->query("UPDATE organizer_db.attendance SET users_unspecified='$usersUnspecified', users_present='$usersPresent', users_abscent='$usersAbsent' WHERE eventID='$eventID'") or die($connection->error);
 
 header('Location: /gameOrganizer/views/attendance.php');
-?>
